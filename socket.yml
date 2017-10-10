@@ -1,0 +1,64 @@
+name: sync-state
+description: Description of sync-state
+version: 0.0.2
+classes:
+  pool:
+    - name: name
+      type: string
+  transaction:
+    - name: pool
+      type: reference
+      target: pool
+      filter_index: true
+endpoints:
+  create_pool:
+    description: Creates a transaction pool
+    file: create_pool.js
+    parameters:
+      name:
+        type: string
+        description: Name of your pool
+        example: tickets
+    response:
+      success:
+        description: Pool creation succeded
+        parameters:
+          pool:
+            type: object
+            description: Transaction pool
+            example: |
+              {
+                "id": 1,
+                "name": "tickets"
+              }
+      error:
+        description: Pool creation failed
+        status: 400
+  sync:
+    description: Create new transaction
+    file: sync.js
+    parameters:
+      pool:
+        type: integer
+        description: Id of your pool
+        example: 1
+      lastId:
+        type: integer
+        description: Id of your last transaction
+        example: 14
+    response:
+      success:
+        description: Creates new transaction
+        parameters:
+          transaction:
+            type: object
+            description: Created transaction
+            example: |
+              {
+                "id": 3,
+                "pool": 2
+              }
+          message:
+            type: string
+            description: Message
+            example: Created transaction

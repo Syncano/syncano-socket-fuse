@@ -1,0 +1,32 @@
+{
+  "license": "MIT",
+  "dependencies": {
+    "syncano-server": "^1.0.1-6"
+  },
+  "scripts": {
+    "test": "yarn && npm run test:lint && npm run test:e2e:coverage",
+    "test:e2e-single": "cross-env NODE_ENV=test mocha -s 1800 --reporter spec --require babel-register --timeout 10000",
+    "test:e2e-single:coverage": "nyc --produce-source-map=true cross-env NODE_ENV=test mocha -s 1800 --reporter spec --require babel-register --timeout 4000",
+    "test:e2e": "npm run test:e2e-single",
+    "test:e2e:coverage": "nyc --produce-source-map=true npm run test:e2e",
+    "test:lint": "standard --fix"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.3",
+    "syncano-test": "^0.1.10"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "7"
+          }
+        }
+      ]
+    ]
+  }
+}
