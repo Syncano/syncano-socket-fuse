@@ -1,10 +1,10 @@
 {
   "license": "MIT",
   "dependencies": {
-    "syncano-server": "^1.0.1-6"
+    "syncano-server": "^1.0.1-13"
   },
   "scripts": {
-    "test": "yarn && npm run test:lint && npm run test:e2e:coverage",
+    "test": "yarn  && npm run test:lint && npm run test:e2e:coverage",
     "test:e2e-single": "cross-env NODE_ENV=test mocha -s 1800 --reporter spec --require babel-register --timeout 10000",
     "test:e2e-single:coverage": "nyc --produce-source-map=true cross-env NODE_ENV=test mocha -s 1800 --reporter spec --require babel-register --timeout 4000",
     "test:e2e": "npm run test:e2e-single",
@@ -13,9 +13,24 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "chai": "^4.1.2",
+    "faker": "^4.1.0",
     "mocha": "^3.5.3",
-    "syncano-test": "^0.1.10"
+    "syncano-test": "^0.3.3"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
   },
   "babel": {
     "presets": [
@@ -27,6 +42,9 @@
           }
         }
       ]
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
     ]
   }
 }
