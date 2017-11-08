@@ -27,7 +27,7 @@ export default async ctx => {
 
     lock = await query.list()
     if (lock.length === 0) {
-      // Create new lock if it doesn't exit
+      // Create new lock if it doesn't exist
       let lockParams = {
         appid,
         entity,
