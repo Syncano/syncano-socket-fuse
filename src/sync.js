@@ -63,7 +63,6 @@ export default async ctx => {
     if (secret === true) {
       params = {
         ...params,
-        secret: true,
         user: userId
       }
     }
