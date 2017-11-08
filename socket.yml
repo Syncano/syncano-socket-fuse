@@ -40,10 +40,10 @@ classes:
     
 endpoints:
   messages:
-    channel: messages.{appid}
+    channel: messages.{appid}.{entity}
 
   user_messages:
-    channel: messages.{appid}.{user}
+    channel: messages.{appid}.{entity}.{user}
 
   list:
     description: List of transactions for entity
