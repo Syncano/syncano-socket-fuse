@@ -14,7 +14,7 @@ export default async ctx => {
       query = query.where('user', userId)
     }
 
-    transactions = await query.list()
+    let transactions = await query.list()
     transactions = transactions.filter(t => {
       if (t.user !== null) {
         return t.user === userId
@@ -23,7 +23,6 @@ export default async ctx => {
       return true
     })
     return response.json(transactions)
-
   } catch (error) {
     return response.json({message: error.message}, 400)
   }

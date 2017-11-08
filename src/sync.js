@@ -25,7 +25,7 @@ export default async ctx => {
       query = query.where('user', userId)
     }
 
-    lock = await query.list()
+    let lock = await query.list()
     if (lock.length === 0) {
       // Create new lock if it doesn't exist
       let lockParams = {
@@ -75,7 +75,6 @@ export default async ctx => {
 
     channel.publish(messagesString, {entity, action, payload, tid})
     return response.json(createdTransaction)
-
   } catch ({message}) {
     return response.json(message, 409)
   }
