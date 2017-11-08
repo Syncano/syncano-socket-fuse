@@ -41,8 +41,10 @@ classes:
 endpoints:
   messages:
     channel: messages.{appid}
+
   user_messages:
     channel: messages.{appid}.{user}
+
   list:
     description: List of transactions for entity
     file: list.js
@@ -59,6 +61,7 @@ endpoints:
         type: boolean
         description: secret
         example: true
+
   sync:
     description: Create new transaction
     file: sync.js
