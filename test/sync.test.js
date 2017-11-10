@@ -3,11 +3,12 @@ import {assert} from 'chai'
 import {run} from 'syncano-test'
 import meta from './meta'
 import {mockSync} from './mock'
-import {sync, lock, user} from './utils'
+import {sync, lock, user, lockfilter} from './utils'
 describe('sync', function () {
   it('create', async function () {
     const sync = mockSync()
     let res = await run('sync', {args: sync, meta})
+    let lock = await lockfilter(sync)
     assert.propertyVal(res, 'code', 200)
     assert.propertyVal(res, 'mimetype', 'application/json')
     assert.propertyVal(res.data, 'appid', sync.appid)
@@ -58,6 +59,7 @@ describe('sync', function () {
       latestTid: syncObject.tid
     }
     let res = await run('sync', {args: sync2, meta})
+
     assert.propertyVal(res, 'code', 200)
     assert.propertyVal(res, 'mimetype', 'application/json')
     assert.propertyVal(res.data, 'appid', sync2.appid)
