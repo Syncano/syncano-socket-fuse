@@ -36,7 +36,8 @@ export default async ctx => {
       if (secret === true) {
         lockParams = {...lockParams, user: userId}
       }
-      lock = [await data.lock.create(lockParams)]
+      await data.lock.create(lockParams)
+      lock = await query.list()
     }
     lock = lock[0]
 
