@@ -5,10 +5,10 @@ export default async ctx => {
 
   try {
     const {user} = ctx.meta
-    const {appid = null, entity = null, secret = false} = ctx.args
+    const {appid = null, entity = null, secret = false, lastId = 0} = ctx.args
     const userId = user ? user.id : null
 
-    let query = data.transaction.where('appid', appid).where('entity', entity)
+    let query = data.transaction.where('appid', appid).where('entity', entity).where('id', 'gt', lastId)
 
     if (userId !== null && secret === true) {
       query = query.where('user', userId)
