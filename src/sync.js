@@ -70,10 +70,10 @@ export default async ctx => {
 
     const createdTransaction = await data.transaction.create(params)
     const messagesString = secret === true && userId !== null
-      ? `user_messages.${appid}.${userId}.${entity}`
-      : `messages.${appid}.${entity}`
+      ? `user_websocket.${appid}-${entity}.${userId}`
+      : `websocket.${appid}-${entity}`
 
-    channel.publish(messagesString, {entity, action, payload, tid})
+    channel.publish(messagesString, {entity, action, payload, tid, id:createdTransaction.id})
     return response.json(createdTransaction)
   } catch ({message}) {
     return response.json(message, 409)

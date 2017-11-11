@@ -36,11 +36,11 @@ classes:
     
     
 endpoints:
-  messages:
-    channel: messages.{appid}.{entity}
+  websocket:
+    channel: websocket.{room}
 
-  user_messages:
-    channel: messages.{appid}.{entity}.{user}
+  user_websocket:
+    channel: user_websocket.{room}.{user}
 
   list:
     description: List of transactions for entity
