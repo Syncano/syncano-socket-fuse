@@ -73,7 +73,7 @@ export default async ctx => {
       ? `user_websocket.${appid}-${entity}.${userId}`
       : `websocket.${appid}-${entity}`
 
-    channel.publish(messagesString, {entity, action, payload, tid, id:createdTransaction.id})
+    channel.publish(messagesString, {appid, entity, action, payload, tid, id:createdTransaction.id})
     return response.json(createdTransaction)
   } catch ({message}) {
     return response.json(message, 409)
